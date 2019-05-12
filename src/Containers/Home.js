@@ -1,16 +1,23 @@
 import React from 'react';
 import String from '../Components/Contents';
-import gresik from '../assets/gresik2.jpg'
+import gresik from '../assets/gresik2.jpg';
+import { connect } from 'react-redux';
+import { setLocation } from '../Redux/Actions';
 
 class Home extends React.Component{
+
+    componentDidMount(){
+        
+        this.props.setloc(this.props.location)
+    }
     
     render(){
         
         String.setLanguage(this.props.lang)
         
         return(
-            <div className="Page">
-                <div className="py-2 my-5">
+            <div className="Page my-5">
+                <div className="py-2">
 
                 <img src={gresik} className="img-fluid" alt="Gresik City" />
                 </div>
@@ -44,4 +51,17 @@ class Home extends React.Component{
 
 }
     
-export default Home;
+const mapStateToProps = state =>{
+    return{
+        loc: state.Reducers.location
+    }
+}
+
+const mapDispatchToProps = dispatch =>{
+    return{
+        setloc: (loc) => dispatch(setLocation(loc))
+    }
+}
+
+
+export default connect(mapStateToProps,mapDispatchToProps)(Home)

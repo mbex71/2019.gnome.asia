@@ -6,6 +6,7 @@ import { setLang,setLocation } from '../Redux/Actions';
 import String from '../Components/Contents';
 import '../App.css'
 
+
 class Navigation extends React.Component{
     constructor(props){
         super(props);
@@ -23,9 +24,9 @@ class Navigation extends React.Component{
     }
     render(){
         String.setLanguage(this.props.lang)
-        console.log(this.props.location)
+        
         return(
-            <Navbar style={{ backgroundColor:'#4A86CF' }} fixed="top" expand="lg">
+            <Navbar className="navbar bg-dark" fixed="top" expand="lg">
                 <div className="container-fluid">
                     
                     <Link className="navbar-brand" to="/" style={{ color:'white' }}>Gnome Asia Summit 2019</Link>
@@ -41,7 +42,7 @@ class Navigation extends React.Component{
                             <NavItem><Link className="nav-link" onClick={()=>this.props.setLoc('sponsor')} style={this.props.location==='sponsor' ? {fontWeight:'bold',opacity:1}:null} to="/sponsor">{String.navigation.sponsor}</Link></NavItem>
                             <UncontrolledDropdown nav inNavbar >
                                 <DropdownToggle nav caret>{String.navigation.language}</DropdownToggle>
-                                <DropdownMenu right style={{ backgroundColor:'#4A86CF' }}>
+                                <DropdownMenu right className="bg-dark" style={{ border:'none',fontSize:'14px' }}>
                                     <DropdownItem onClick={()=> this.props.setLang('id')} style={this.props.lang==='id'? {fontWeight:'bolder',color:'#fff'}:{color:'#fff'}}>Indonesia</DropdownItem>
                                     <DropdownItem onClick={()=> this.props.setLang('en')} style={this.props.lang==='en'? {fontWeight:'bolder',color:'#fff'}:{color:'#fff'}}>English</DropdownItem>
                                 </DropdownMenu>
@@ -54,6 +55,7 @@ class Navigation extends React.Component{
     }
 
     componentDidMount(){
+        console.log(this.props)
         if(localStorage.getItem('lang')){
             const lang = localStorage.getItem('lang')
             this.props.setLang(lang);
@@ -61,6 +63,8 @@ class Navigation extends React.Component{
         else{
             localStorage.setItem('lang',this.props.lang)
         }
+
+    
     }
 }
 
@@ -72,6 +76,7 @@ const mapStateToProps = state =>{
         location:state.Reducers.location
     }
 }
+
 
 const mapDispatchToProps = dispatch => {
     return{
