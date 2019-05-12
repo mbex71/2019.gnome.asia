@@ -1,26 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter,Route,Switch
+} from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './App.css'
+import { connect } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Navigation from './Components/Navigation';
+import Home from './Containers/Home';
+import Venue from './Containers/Venue';
+import Notfound from './Containers/Notfound';
+import Footer from './Components/Footer';
+
+
+
+class App extends React.Component {
+  
+  render(){
+    
+    let lang = this.props.lang
+    return (
+      <BrowserRouter>
+       <div className="App">
+        <Navigation />
+        
+          <Switch>
+            <Route exact path="/" component={() => <Home lang={lang} location="home"/>} />
+            <Route path="/venue" component={() => <Venue lang={lang} location="venue"/>} />
+            <Route path="/registration"  component={Notfound} />
+            <Route component={Notfound} />
+          </Switch>
+          <Footer/>
+       </div>
+        
+      </BrowserRouter>
+    );
+  }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return{
+    lang: state.Reducers.lang
+  }
+}
+
+export default connect(mapStateToProps)(App);
