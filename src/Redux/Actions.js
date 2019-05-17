@@ -1,8 +1,8 @@
 
 export const setLang = (lang) => {
-    if(!localStorage.getItem('lang')){
+    
         localStorage.setItem('lang',lang)
-    }
+    
     
     return ({
         type:"SET_LANG",
@@ -19,3 +19,4 @@ export const setLocation = (loc) => {
         payload:loc
     })
 }
+
