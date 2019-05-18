@@ -9,8 +9,15 @@ class Registration extends React.Component{
             <div className="Page my-5">
                 <div className="container py-3">
                     <h1>Registration</h1>
+                    <hr/>
+                    <div className="d-flex justify-content-center align-items-center" style={{ height:'70vh' }}>
+                        <div className="text-center">
+                            <h3>Comming Soon</h3>
+                            <p style={{ letterSpacing:'5px' }}>Conference Date : October, 12–13 2019</p>
+                        </div>
+                    </div>
+
                 </div>
-                
             </div>
         )
     }

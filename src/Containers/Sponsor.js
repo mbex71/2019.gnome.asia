@@ -8,6 +8,7 @@ class Sponsor extends React.Component{
             <div className="Page my-5">
                 <div className="container py-3">
                     <h1>Sponsor</h1>
+                    <hr/>
                 </div>
                 
             </div>
